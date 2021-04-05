@@ -2,13 +2,13 @@
 var tableData = data;
 console.log(tableData);
 
-// set reference to tbody
+// set references
 var tbody = d3.select("tbody");
+var button = d3.select("#filter-btn");
 
 // get values for each column
 tableData.forEach(function(UFOdata) {
-    console.log(UFOdata);
-    
+    // console.log(UFOdata);
     // append one row for each sighting
     var sighting = tbody.append("tr");
 
@@ -20,9 +20,6 @@ tableData.forEach(function(UFOdata) {
     });
   });
 
-
-// Select filter button
-var button = d3.select("#filter-btn");
 
 //create event handler
 button.on("click", function() {
@@ -37,19 +34,17 @@ button.on("click", function() {
     // filter data using mapping
     var filteredDate = tableData.filter(d => d.datetime === inputValue);
     // console.log filtered data by date
-    console.log(filteredDate);
-
-
+    // console.log(filteredDate);
     filteredDate.forEach(function(i) {
 
-    console.log(i);
+    // console.log(i);
     // append row for each sighting
-    var sighting = tbody.append("tr");
+    var row = tbody.append("tr");
     
     //use object.entries to separate key and value
     Object.entries(i).forEach(function([key, value]) {
         console.log(key, value);
-        var rowDetail = sighting.append("td");
+        var rowDetail = row.append("td");
         rowDetail.text(value);
     });
 });
